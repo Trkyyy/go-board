@@ -5,7 +5,7 @@ var boardElement = document.querySelector(".tenuki-board");
 
 var game = new tenuki.Game({ element: boardElement });
 
-game.setAutoplay("black"); // AI is white
+// game.setAutoplay("black"); // AI is white
 
 var controlElement = document.querySelector(".controls");
 var controls = new ExampleGameControls(controlElement, game);
