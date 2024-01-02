@@ -5,19 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/joseki-training@1.0.0/dist/joseki-training.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="build/tenuki.css">
+    <script src="build/tenuki.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <a class="navbar-brand" href="#">Go Joseki Trainer</a>
     </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <div id="board" class="my-class"></div>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
+    <div class="tenuki-board"></div>
+    <script>var boardElement = document.querySelector(".tenuki-board");var game = new tenuki.Game({ element: boardElement });</script>
   </body>
 </html>
