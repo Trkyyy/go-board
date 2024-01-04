@@ -1,3 +1,8 @@
+var josekisJson = require('./josekis.json');
+
+console.log(josekisJson);
+
+
 var boardElement = document.querySelector(".tenuki-board");
 
 //localStorage.setItem("startPath", JSON.stringify([{y:3,x:15}, {pass:true}, {y:2,x:13}]));
