@@ -1,24 +1,31 @@
 {
-    "4-4PointJosekis": [
-      {
-        "name": "4-4 Point",
-        "lines": [
-          [{
-            "name": "3-3 point invasion",
-            "moves": ["R17"]
-            }]
-        ]
-      }
-    ],
-    "3-4PointJosekis": [
-      {
-        "name": "3-4 Point",
-        "lines": [
+    "4-4PointJosekis": {
+      "base": "Q16",
+      "josekis": [
+        {
+          "name": "3-3 point invasion",
+          "firstMove": "R17",
+          "lines": [
             [{
-              "name": "3-3 point invasion",
+              "name": "",
               "moves": ["R17"]
               }]
           ]
-      }
-    ]
-}
+        }
+      ]
+    },
+    "3-4PointJosekis": {
+      "base": "Q17",
+      "josekis": [
+        {
+          "name": "3-4 Point",
+          "lines": [
+              [{
+                "name": "3-3 point invasion",
+                "moves": ["R17"]
+                }]
+            ]
+        }
+      ]
+    }
+  }

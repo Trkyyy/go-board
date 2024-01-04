@@ -1,27 +1,33 @@
 var jsonData = {
-  "4-4PointJosekis": [
-    {
-      "name": "3-3 point invasion",
-      "firstMove": "R17",
-      "lines": [
-        [{
-          "name": "",
-          "moves": ["R17"]
-          }]
-      ]
-    }
-  ],
-  "3-4PointJosekis": [
-    {
-      "name": "3-4 Point",
-      "lines": [
+  "4-4PointJosekis": {
+    "base": "Q16",
+    "josekis": [
+      {
+        "name": "3-3 point invasion",
+        "firstMove": "R17",
+        "lines": [
           [{
-            "name": "3-3 point invasion",
+            "name": "",
             "moves": ["R17"]
             }]
         ]
-    }
-  ]
+      }
+    ]
+  },
+  "3-4PointJosekis": {
+    "base": "Q17",
+    "josekis": [
+      {
+        "name": "3-4 Point",
+        "lines": [
+            [{
+              "name": "3-3 point invasion",
+              "moves": ["R17"]
+              }]
+          ]
+      }
+    ]
+  }
 }
 
 
@@ -83,7 +89,7 @@ for (var key in jsonData) {
 
         var josekiJson = getJosekiData(objName);
 
-        for(var joseki in josekiJson){
+        for(var joseki in josekiJson.josekis){
           var josekiButton = document.createElement("a");
           josekiButton.classList.add("btn", "btn-secondary", "mr-2", "mb-2");
           josekiButton.textContent = josekiJson[joseki].name;
