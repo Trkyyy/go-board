@@ -1,28 +1,31 @@
-var josekisJson = {
+var jsonData = {
   "4-4PointJosekis": [
     {
-      "name": "Basic 4-4 Point Joseki",
-      "moves": [
-        {"move": "D4", "description": "Approach the corner"},
-        {"move": "Q16", "description": "Extend along the side"},
-        {"move": "P3", "description": "Extend from the approach"}
+      "name": "3-3 point invasion",
+      "firstMove": "R17",
+      "lines": [
+        [{
+          "name": "",
+          "moves": ["R17"]
+          }]
       ]
     }
   ],
   "3-4PointJosekis": [
     {
-      "name": "3-4 Point Low Approach Joseki",
-      "moves": [
-        {"move": "D3", "description": "Low approach"},
-        {"move": "Q16", "description": "Extend along the side"},
-        {"move": "P3", "description": "Extend from the approach"}
-      ]
+      "name": "3-4 Point",
+      "lines": [
+          [{
+            "name": "3-3 point invasion",
+            "moves": ["R17"]
+            }]
+        ]
     }
   ]
 }
 
 
-console.log(josekisJson);
+console.log(jsonData);
 
 
 var boardElement = document.querySelector(".tenuki-board");
@@ -54,10 +57,12 @@ document.addEventListener("keydown",  function (e) {
 
 
 var josekiSelector = document.getElementById("jsonLinks");
+var linesElement = document.getElementById("lines");
+
 
 // Iterate through keys and create hyperlinks
-for (var key in josekisJson) {
-  if (josekisJson.hasOwnProperty(key)) {
+for (var key in jsonData) {
+  if (jsonData.hasOwnProperty(key)) {
     // Create a hyperlink element
     var link = document.createElement("a");
     link.href = "#"; // Set the href to "#" for demonstration purposes
@@ -72,6 +77,28 @@ for (var key in josekisJson) {
     link.addEventListener("click", function(objName) {
       return function() {
         console.log("Clicked on:", objName);
+
+        // Clearing lines element
+        linesElement.innerHTML = "";
+
+        var josekiJson = getJosekiData(objName);
+
+        for(var joseki in josekiJson){
+          var josekiButton = document.createElement("a");
+          josekiButton.classList.add("btn", "btn-secondary", "mr-2", "mb-2");
+          josekiButton.textContent = joseki.name;
+
+          // Add click event listener to log the name of the object
+          josekiButton.addEventListener("click", function(objName) {
+            return function() {
+              console.log(joseki.firstMove)
+            };
+          }); // Using a closure to capture the current key value
+
+          linesElement.appendChild(josekiButton);
+        }
+
+
       };
     }(key)); // Using a closure to capture the current key value
 
@@ -79,3 +106,10 @@ for (var key in josekisJson) {
     josekiSelector.appendChild(link);
   }
 }
+
+
+// Function to get JSON object of specific Joseki
+function getJosekiData(category) {
+  return josekiData[category] || [];
+}
+
