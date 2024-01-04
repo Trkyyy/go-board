@@ -63,7 +63,7 @@ for (var key in josekisJson) {
     link.href = "#"; // Set the href to "#" for demonstration purposes
 
     // Add Bootstrap classes for formatting
-    link.classList.add("btn", "btn-primary", "mr-2", "mb-2");
+    link.classList.add("btn", "btn-secondary", "mr-2", "mb-2");
 
     // Set the text content to the key (name of the object)
     link.textContent = key;
