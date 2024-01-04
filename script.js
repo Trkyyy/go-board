@@ -86,12 +86,12 @@ for (var key in jsonData) {
         for(var joseki in josekiJson){
           var josekiButton = document.createElement("a");
           josekiButton.classList.add("btn", "btn-secondary", "mr-2", "mb-2");
-          josekiButton.textContent = joseki.name;
+          josekiButton.textContent = josekiJson[joseki].name;
 
           // Add click event listener to log the name of the object
           josekiButton.addEventListener("click", function(objName) {
             return function() {
-              console.log(joseki.firstMove)
+              console.log(josekiJson[joseki].firstMove)
             };
           }); // Using a closure to capture the current key value
 
