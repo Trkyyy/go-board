@@ -21,11 +21,39 @@ game.callbacks.postRender = function(game) {
 };
 
 document.addEventListener("keydown",  function (e) {
-      //if (e.keyCode == 82) { // r pressed
-      if (e.keyCode == 69) { // e pressed
-        controls.reset(e);
-      }
-      else if (e.keyCode == 27) { // enter pressed
-        controls.reset(e);
-      }
-   }, false);
+  //if (e.keyCode == 82) { // r pressed
+  if (e.keyCode == 69) { // e pressed
+    controls.reset(e);
+  }
+  else if (e.keyCode == 27) { // enter pressed
+    controls.reset(e);
+  }
+}, false);
+
+
+var josekiSelector = document.getElementById("jsonLinks");
+
+// Iterate through keys and create hyperlinks
+for (var key in josekisJson) {
+  if (josekisJson.hasOwnProperty(key)) {
+    // Create a hyperlink element
+    var link = document.createElement("a");
+    link.href = "#"; // Set the href to "#" for demonstration purposes
+
+    // Add Bootstrap classes for formatting
+    link.classList.add("btn", "btn-primary", "mr-2", "mb-2");
+
+    // Set the text content to the key (name of the object)
+    link.textContent = key;
+
+    // Add click event listener to log the name of the object
+    link.addEventListener("click", function(objName) {
+      return function() {
+        console.log("Clicked on:", objName);
+      };
+    }(key)); // Using a closure to capture the current key value
+
+    // Append the hyperlink to the container
+    josekiSelector.appendChild(link);
+  }
+}
