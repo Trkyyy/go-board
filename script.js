@@ -91,9 +91,9 @@ for (var key in jsonData) {
           // Add click event listener to log the name of the object
           josekiButton.addEventListener("click", function(objName) {
             return function() {
-              console.log(josekiJson[joseki].firstMove)
+              console.log(josekiJson[joseki].firstMove);
             };
-          }); // Using a closure to capture the current key value
+          }(joseki)); // Using a closure to capture the current key value
 
           linesElement.appendChild(josekiButton);
         }
