@@ -110,6 +110,6 @@ for (var key in jsonData) {
 
 // Function to get JSON object of specific Joseki
 function getJosekiData(category) {
-  return josekiData[category] || [];
+  return jsonData[category] || [];
 }
 
