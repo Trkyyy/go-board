@@ -61,7 +61,11 @@ for (var key in jsonData) {
     // Add click event listener to log the name of the object
     link.addEventListener("click", function(objName) {
       return function() {
+        // Logging
         console.log("Clicked on:", objName);
+        
+        // Get data
+        var josekiJson = getJosekiData(objName);
 
         // Clear board
         newBoard();
@@ -73,7 +77,6 @@ for (var key in jsonData) {
         // Clearing lines element
         linesElement.innerHTML = "";
 
-        var josekiJson = getJosekiData(objName);
 
         for(var joseki in josekiJson.josekis){
           var josekiButton = document.createElement("a");
