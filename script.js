@@ -72,7 +72,7 @@ for (var key in jsonData) {
 
         // Play first move
         var coords = josekiJson.base.split(",");
-        game.playAt(3,3);
+        game.playAt(Number(coords[0]),Number(coords[1]));
 
         // Clearing lines element
         linesElement.innerHTML = "";
