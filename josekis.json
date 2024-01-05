@@ -1,21 +1,21 @@
 {
     "4-4PointJosekis": {
-      "base": "Q16",
+      "base": "3,3",
       "josekis": [
         {
           "name": "3-3 point invasion",
-          "firstMove": "R17",
+          "firstMove": "2,2",
           "lines": [
             [{
               "name": "",
-              "moves": ["R17"]
+              "moves": ["2,2"]
               }]
           ]
         }
       ]
     },
     "3-4PointJosekis": {
-      "base": "Q17",
+      "base": "3,2",
       "josekis": [
         {
           "name": "3-4 Point",

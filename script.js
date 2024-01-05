@@ -1,21 +1,21 @@
 var jsonData = {
   "4-4PointJosekis": {
-    "base": "Q16",
+    "base": "3,3",
     "josekis": [
       {
         "name": "3-3 point invasion",
-        "firstMove": "R17",
+        "firstMove": "2,2",
         "lines": [
           [{
             "name": "",
-            "moves": ["R17"]
+            "moves": ["2,2"]
             }]
         ]
       }
     ]
   },
   "3-4PointJosekis": {
-    "base": "Q17",
+    "base": "3,2",
     "josekis": [
       {
         "name": "3-4 Point",
@@ -34,33 +34,12 @@ var jsonData = {
 console.log(jsonData);
 
 
+
+// Get board element and create new game
 var boardElement = document.querySelector(".tenuki-board");
-
-//localStorage.setItem("startPath", JSON.stringify([{y:3,x:15}, {pass:true}, {y:2,x:13}]));
-//var game = new tenuki.Game({ element: boardElement }, localStorage);
-
-var game = new tenuki.Game({ element: boardElement });
-
-// game.setAutoplay("black"); // AI is white
-
 var controlElement = document.querySelector(".controls");
-var controls = new ExampleGameControls(controlElement, game);
-controls.setup();
-
-game.callbacks.postRender = function(game) {
-  controls.updateStats();
-};
-
-document.addEventListener("keydown",  function (e) {
-  //if (e.keyCode == 82) { // r pressed
-  if (e.keyCode == 69) { // e pressed
-    controls.reset(e);
-  }
-  else if (e.keyCode == 27) { // enter pressed
-    controls.reset(e);
-  }
-}, false);
-
+var game;
+newBoard()
 
 var josekiSelector = document.getElementById("jsonLinks");
 var linesElement = document.getElementById("lines");
@@ -84,6 +63,13 @@ for (var key in jsonData) {
       return function() {
         console.log("Clicked on:", objName);
 
+        // Clear board
+        newBoard();
+
+        // Play first move
+        var coords = josekiJson.base.split(",");
+        game.playAt(coords[0],coords[1]);
+
         // Clearing lines element
         linesElement.innerHTML = "";
 
@@ -92,12 +78,12 @@ for (var key in jsonData) {
         for(var joseki in josekiJson.josekis){
           var josekiButton = document.createElement("a");
           josekiButton.classList.add("btn", "btn-secondary", "mr-2", "mb-2");
-          josekiButton.textContent = josekiJson[joseki].name;
+          josekiButton.textContent = josekiJson.josekis[joseki].name;
 
           // Add click event listener to log the name of the object
           josekiButton.addEventListener("click", function(objName) {
             return function() {
-              console.log(josekiJson[joseki].firstMove);
+              console.log(josekiJson.josekis[joseki].firstMove);
             };
           }(joseki)); // Using a closure to capture the current key value
 
@@ -117,5 +103,33 @@ for (var key in jsonData) {
 // Function to get JSON object of specific Joseki
 function getJosekiData(category) {
   return jsonData[category] || [];
+}
+
+// Clear board element and create new board, assigning it to game variable
+function newBoard() {
+  // Empty HTML 
+  boardElement.innerHTML = "";
+  controlElement.innerHTML = "";
+
+  // Instansiate new game 
+  game = new tenuki.Game({ element: boardElement });
+
+  // Configure controls
+  var controls = new ExampleGameControls(controlElement, game);
+  controls.setup();
+
+  game.callbacks.postRender = function(game) {
+    controls.updateStats();
+  };
+
+  document.addEventListener("keydown",  function (e) {
+    //if (e.keyCode == 82) { // r pressed
+    if (e.keyCode == 69) { // e pressed
+      controls.reset(e);
+    }
+    else if (e.keyCode == 27) { // enter pressed
+      controls.reset(e);
+    }
+  }, false);
 }
 
