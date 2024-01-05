@@ -63,7 +63,7 @@ for (var key in jsonData) {
       return function() {
         // Logging
         console.log("Clicked on:", objName);
-        
+
         // Get data
         var josekiJson = getJosekiData(objName);
 
@@ -72,7 +72,7 @@ for (var key in jsonData) {
 
         // Play first move
         var coords = josekiJson.base.split(",");
-        game.playAt(coords[0],coords[1]);
+        game.playAt(coords[0],coords[1], "black");
 
         // Clearing lines element
         linesElement.innerHTML = "";
@@ -112,7 +112,7 @@ function getJosekiData(category) {
 function newBoard() {
   // Empty HTML 
   boardElement.innerHTML = "";
-  controlElement.innerHTML = "<div class=\"buttons\"> <a class=\"pass\" href=\"#\">Pass<\/a> <a class=\"undo\" href=\"#\">Undo<\/a> <a class=\"reset\" href=\"#\" accesskey=\"r\">Reset<\/a> <a class=\"setPath\" href=\"#\">Set current position to be the starting point<\/a> <input type=\"checkbox\" id=\"isPlayAsWhite\" name=\"isPlayAsWhite\" value=\"isPlayAsWhite\"> <label for=\"isPlayAsWhite\"> I want to play as white<\/label> <\/div> <div class=\"branch-info\" style=\"width:600px;\"><p>\u00A0<\/p><\/div> <div class=\"game-info\" style=\"width:600px;\"><p>\u00A0<\/p><\/div> <div class=\"text-info\" style=\"width:600px;\"><p><\/p><\/div>";
+  controlElement.innerHTML = "<div class=\"buttons\"> <a class=\"pass\" href=\"#\">Pass<\/a> <a class=\"undo\" href=\"#\">Undo<\/a> <\/div> <div class=\"branch-info\" style=\"width:600px;\"><p>\u00A0<\/p><\/div> <div class=\"game-info\" style=\"width:600px;\"><p>\u00A0<\/p><\/div> <div class=\"text-info\" style=\"width:600px;\"><p><\/p><\/div>";
 
   // Instansiate new game 
   game = new tenuki.Game({ element: boardElement });
